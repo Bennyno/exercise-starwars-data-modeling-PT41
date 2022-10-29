@@ -12,14 +12,16 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     email = Column(String(250), unique = True, nullable=False)
-    favorite_id = Column(Integer, ForeignKey("favorites.id"))
-    favorites = relationship("Favorites")
+    username = Column(String(250), unique= True, nullable = False)
+    user_password = Column(String, nullable=False)
     
 
 
 class Favorites(Base):
     __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    user = relationship("User")
     favorite_planet_id = Column(Integer, ForeignKey("planets.id"))
     favorite_planet = relationship("Planets")
     favorite_character_id = Column(Integer, ForeignKey("people.id"))
