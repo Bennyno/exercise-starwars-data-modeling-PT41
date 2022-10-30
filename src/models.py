@@ -15,8 +15,6 @@ class User(Base):
     username = Column(String(250), unique= True, nullable = False)
     user_password = Column(String, nullable=False)
     
-
-
 class Favorites(Base):
     __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True)
@@ -26,13 +24,9 @@ class Favorites(Base):
     favorite_planet = relationship("Planets")
     favorite_character_id = Column(Integer, ForeignKey("people.id"))
     favorite_character = relationship("People")
-  
-    
 
 class People(Base):
     __tablename__ = 'people'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     height = Column(String(250))
@@ -45,12 +39,8 @@ class People(Base):
     homeworld_id = Column(Integer, ForeignKey("planets.id"))
     homeworld = relationship("Planets")
 
-
-
 class Planets(Base):
     __tablename__ = 'planets'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     rotation_period = Column(String(250))
